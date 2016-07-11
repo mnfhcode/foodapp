@@ -22,6 +22,7 @@
 	 	"q": "^1.0.1",
 	 	"grunt": "latest",
 	 	"mongoose": "~3.8.15",
-	 	"yelp":"latest"
+	 	"yelp":"latest",
+	 	"ejs":"latest"
  	}
 }
