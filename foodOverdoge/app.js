@@ -6,7 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var ejs = require('ejs');
-var search = require('./models/yelpSearch.js');
+//var search = require('./models/yelpSearch.js');
+var search = require('./models/search.js');
 
 //Create app object
 var app = express();
@@ -27,22 +28,24 @@ app.post('/options', function(req, res){
 });
 
 app.post('/', function(req, res){
-	search.randomPlace(postOptions(req), function(data){
+	search.search(postOptions(req), function(yelpdata, googledata){
 		res.render('results', {
 			title: 'Search Results',
-			name: data.name,
-			rating: data.rating,
-			rating_img_url: data.rating_img_url,
-			url: data.url,
-			display_phone: data.display_phone,
-			image_url: data.image_url,
-			display_address: data.display_address
+			//name: data.name,
+			//rating: data.rating,
+			//rating_img_url: data.rating_img_url,
+			//url: data.url,
+			//display_phone: data.display_phone,
+			//image_url: data.image_url,
+			//display_address: data.display_address,
+			yelpdata:yelpdata,
+			googledata:googledata
 		});
 	});
 });
 
 function postOptions(req){
-	var search_terms = 'food';
+	var search_terms = req.body.keywords || 'food';
 	var search_category = req.body.category || 'Restaurant';
 	var search_location = req.body.location || 'San Francisco';
 	var search_distance = req.body.distance || 16094;//Ten miles
@@ -58,6 +61,6 @@ function postOptions(req){
 
 //console.log(__dirname);
 http.listen(3000, function(){
-  console.log('listening on *:80');
+  console.log('listening on *:3000');
 });
 

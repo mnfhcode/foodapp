@@ -23,6 +23,8 @@
 	 	"grunt": "latest",
 	 	"mongoose": "~3.8.15",
 	 	"yelp":"latest",
-	 	"ejs":"latest"
+	 	"ejs":"latest",
+	 	"googleplaces":"latest",
+	 	"geocoder":"latest"
  	}
 }

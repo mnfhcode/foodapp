@@ -3,20 +3,42 @@
 	<head>
 		<title><%= title %></title>
 	</head>
-	<body>
-		<div>
-			<%= name %>
-			<br />
-			<%= rating %>
-			<img src=<%= rating_img_url %> />
-			<br />
-			<a href=<%= url %>>Website</a>
-			<br />
-			Phone: <%= display_phone %>
-			<br />
-			<img src=<%= image_url%> />
-			<br />
-			<%= display_address %>
-			<br />
+	<body id='home'>
+		<div class='container'>
+			<div class="page-header" id="banner">
+				<div class='row'>
+					<h1>
+						TESTING!!!
+					</h1>
+
+					<ul id='yelpresults'>
+						<h3>
+							Yelp results
+						</h3>
+					</ul>
+					<ul id='googleresults'>
+						<h3>
+							Google results
+						</h3>
+					</ul>
+				</div>
+			</div>
 	</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/superhero/bootstrap.min.css" rel="stylesheet" integrity="sha384-88w0u/oucDSTE30ETLLIobzhT+bQ6CSsiqQyLZpwHvve89eqUA9F2Db6ST6jGRLx" crossorigin="anonymous">
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var y = <%- JSON.stringify(yelpdata) %>;
+			console.log(y);
+			for (var i = 0; i < y.length; ++i){
+				$('#yelpresults').append('<li><a href="' + y[i].url + '">' + y[i].name + '</a><br /><img src="' + y[i].img_url + '"><p>Address: ' + y[i].address + '<br />Phone: ' + y[i].phoneNumber + '</p></li>')
+			}
+
+			var g = <%- JSON.stringify(googledata) %>;
+			for (var i = 0; i < g.length; ++i){
+				$('#googleresults').append('<li>' + g[i].name + '</li>')
+			}
+		});
+	</script>
 </html>
